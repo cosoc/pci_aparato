@@ -185,7 +185,7 @@ impl Properties for LinuxPCIDevice {
     fn set_class_id(&mut self) {
         if let Ok(str) = std::fs::read_to_string(&self.path.join("class")) {
             let new_str = str.trim_start_matches("0x").trim_end_matches("\n");
-            if let Ok(decoded) = hex::decode(&new_str[..4]) {
+            if let Ok(decoded) = hex::decode(&new_str) {
                 self.class_id = decoded;
             }
         }
